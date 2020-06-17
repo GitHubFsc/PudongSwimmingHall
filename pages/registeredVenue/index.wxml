@@ -1,0 +1,78 @@
+<!--pages/registeredVenue/index.wxml-->
+<view class="container">
+	<view class='nav'>
+		<navBar title='' background='rgba(0,0,0,0)' color='#fff' back="{{true}}" home="{{false}}" iconTheme='white' bindback="handlerGobackClick"></navBar>
+	</view>
+	<view class="bgimg">
+		<image src="./../images/registeredtop.png"></image>
+	</view>
+	<view class="body">
+    <view class="title">信息填写</view>
+    <view class="body_input">
+      <view class="txt">场馆名称</view>
+      <view class="input"><input type="text" placeholder="高危证经营机构名称"></input></view>
+    </view>
+    <view class="body_input">
+      <view class="txt">场馆别称</view>
+      <view class="input"><input type="text" placeholder="高危场馆别名"></input></view>
+    </view>
+    <view class="body_input">
+      <view class="txt">经营地址</view>
+      <view class="input"><input type="text" placeholder="高危证上经营机构地址"></input></view>
+    </view>
+    <view class="body_input">
+      <view class="txt">场馆电话</view>
+      <view class="input"><input type="text" placeholder="高危证上经营机构地址"></input></view>
+    </view>
+    <view class="body_input">
+      <view class="txt">场馆负责人姓名</view>
+      <view class="input"><input type="text" placeholder="场馆负责人姓名"></input></view>
+    </view>
+    <view class="body_input">
+      <view class="txt">场馆负责人手机（会拨打）</view>
+      <view class="input"><input type="text" placeholder="场馆负责人手机号"></input></view>
+    </view>
+
+
+
+
+	</view>
+  <view class="body">
+    <view class="title"><view>营业执照照片</view><view>0/4</view></view>
+    <view></view>
+
+
+
+	</view>
+  <view class="businessLicense">
+    <view class="title"><view>营业执照照片</view><view>0/4</view></view>
+    <view class="">
+      <view>
+        <view>示例</view>
+        <view><image src="{{examplesList[0]?'':''}}"></image></view>
+      </view>
+      <view>
+        <block wx:for="{{4}}">
+          <view><image src=""/></view>
+        </block>
+      </view>
+    </view>
+
+
+
+	</view>
+
+
+
+	<view class="prompt_box" wx:if="{{loginFlag}}">
+		<view class="promptBox">
+			<view class="title">提示</view>
+			<view class="txt">{{msg}}</view>
+			<view class="pb_btn">
+				<button class="cancel">取消</button>
+				<button class="confirm" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{loginType==0}}">确定</button>
+				<button class="confirm" open-type="getUserInfo" bindgetuserinfo="getUserInfo" wx:if="{{loginType==1}}">确定</button>
+			</view>
+		</view>
+	</view>
+</view>

@@ -1,0 +1,54 @@
+{
+  "pages": [
+    "pages/registeredVenue/index",
+    "pages/index/index",
+    "pages/wxlogin/index",
+    "pages/login/index",
+    "pages/lifeguardInformation/index",
+    "pages/accidentReport/index",
+    "pages/importantNotice/index",
+    "components/navber/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#00000000",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
+  },
+  "tabBar": {
+    "color": "#949494",
+    "selectedColor": "#4EA4FB",
+    "list": [
+      {
+        "iconPath": "pages/icon/homeH.png",
+        "selectedIconPath": "pages/icon/homeL.png",
+        "pagePath": "pages/index/index",
+        "text": "场馆信息"
+      },
+      {
+        "iconPath": "pages/icon/LIH.png",
+        "selectedIconPath": "pages/icon/LIL.png",
+        "pagePath": "pages/lifeguardInformation/index",
+        "text": "救生员信息"
+      },
+      {
+        "iconPath": "pages/icon/ARH.png",
+        "selectedIconPath": "pages/icon/ARL.png",
+        "pagePath": "pages/accidentReport/index",
+        "text": "事故汇报"
+      },
+      {
+        "iconPath": "pages/icon/INH.png",
+        "selectedIconPath": "pages/icon/INL.png",
+        "pagePath": "pages/importantNotice/index",
+        "text": "重要通知"
+      }
+    ]
+  },
+  "usingComponents": {
+    "navBar": "./../../components/navber/index"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

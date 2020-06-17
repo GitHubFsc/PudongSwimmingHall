@@ -1,0 +1,31 @@
+/* pages/registeredVenue/index.wxss */
+.container{
+  width: 100%;
+  height: 100%;
+  background-color: #FBFBFB;
+  position: relative;
+}
+.nav {
+  height: 0;
+}
+.bgimg{
+  width: 100%;
+  height: 485rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+.body{
+  width: 700rpx;
+  height: auto;
+  padding: 30rpx 20rpx;
+  position: relative;
+  top: 374rpx;
+  left: 25rpx;
+  z-index: 2;
+  background-color: #fff;
+  border-radius:20rpx;
+  text-align: center;
+  font-size: 38rpx;
+}

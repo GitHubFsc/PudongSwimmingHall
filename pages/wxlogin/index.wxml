@@ -1,0 +1,38 @@
+<!--pages/wxlogin/index.wxml-->
+<view class="container">
+	<view class='nav'>
+		<navBar title='' background='rgba(0,0,0,0)' color='#fff' back="{{true}}" home="{{false}}" iconTheme='white' bindback="handlerGobackClick"></navBar>
+	</view>
+	<view class="bgimg">
+		<image src="./../images/bgimg.png"></image>
+	</view>
+	<view class="body">
+		<view>
+			<view class="logo">
+				<image src="./../images/logo.png"></image>
+			</view>
+			<view class="bglogo">
+				<image src="./../icon/bglogo.png"></image>
+			</view>
+		</view>
+		<view class="txt">浦东新区高危险性体育项目游泳场馆</view>
+		<view>数据采集交换平台</view>
+		<view class="wxbtn" catchtap="wxlogin">
+			<view class="wximg">
+				<image src="./../icon/wx.png"></image>
+			</view>
+			<view>微信登录</view>
+		</view>
+	</view>
+	<view class="prompt_box" wx:if="{{loginFlag}}">
+		<view class="promptBox">
+			<view class="title">提示</view>
+			<view class="txt">{{msg}}</view>
+			<view class="pb_btn">
+				<button class="cancel">取消</button>
+				<button class="confirm" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{loginType==0}}">确定</button>
+				<button class="confirm" open-type="getUserInfo" bindgetuserinfo="getUserInfo" wx:if="{{loginType==1}}">确定</button>
+			</view>
+		</view>
+	</view>
+</view>

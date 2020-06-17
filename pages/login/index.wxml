@@ -1,0 +1,24 @@
+<!--pages/login/index.wxml-->
+<view class="container">
+	<view class='nav'>
+		<navBar title='' background='rgba(0,0,0,0)' color='#fff' back="{{true}}" home="{{false}}" iconTheme='white' bindback="handlerGobackClick"></navBar>
+	</view>
+	<view class="bgimg">
+		<image src="./../images/logintop.png"></image>
+	</view>
+	<view class="body">
+		<view class="body_logo"> 
+			<view class="logo"> <image src="./../images/logo.png"></image> </view>
+			<view class="bglogo"> <image src="./../icon/bglogo.png"></image> </view>
+		</view>
+		<view class="body_input">
+			<view class="label">账号</view>
+			<view class="input"><input type="text" placeholder="账号" value="{{user_name}}" data-model="user_name" bindinput="inputWatch"></input></view>
+		</view>
+		<view class="body_input">
+			<view class="label">密码</view>
+			<view class="input"><input type="text" password="true" placeholder="密码" value="{{password}}" data-model="password" bindinput="inputWatch"></input></view>
+		</view>
+		<view class="body_btn {{bodyBtn?'body_btnL':'body_btnH'}}" catchtap="login">登录</view>
+	</view>
+</view>

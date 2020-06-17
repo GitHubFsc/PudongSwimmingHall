@@ -1,0 +1,84 @@
+/* pages/wxlogin/index.wxss */
+.container{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.nav {
+  height: 0;
+}
+.bgimg{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+.body{
+  width: 700rpx;
+  height: 640rpx;
+  padding: 40rpx;
+  position: absolute;
+  top: 374rpx;
+  left: 25rpx;
+  z-index: 2;
+  background-color: #fff;
+  border-radius:20rpx;
+  text-align: center;
+  font-size: 38rpx;
+}
+.body .logo{
+  width: 222rpx;
+  height: 222rpx;
+  position: absolute;
+  left: 242rpx;
+  top: -120rpx;
+  z-index: 3;
+}
+.body .bglogo{
+  width: 345rpx;
+  height: 345rpx;
+  position: absolute;
+  left: 182rpx;
+  top: -180rpx;
+  z-index: 2;
+}
+.body .txt{
+  margin: 126rpx 0 20rpx 0;
+}
+.wxbtn{
+  width:620rpx;
+  height:90rpx;
+  background:rgba(60,154,248,1);
+  border-radius:45rpx;
+  margin: 0 ;
+  padding: 0;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  font-size: 36rpx;
+  line-height: 90rpx;
+  margin-top: 120rpx;
+}
+.wxbtn button{
+  width:620rpx !important;
+  height:90rpx !important;
+  background:rgba(60,154,248,1);
+  border-radius:45rpx;
+  margin: 0 ;
+  padding: 0;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  font-size: 36rpx !important;
+  line-height: 90rpx;
+}
+.wximg{
+  width: 42rpx;
+  height: 32rpx;
+  margin-right: 20rpx;
+}
