@@ -11,7 +11,8 @@ Page({
     loginType : 0,
     loginFlag : false
   },
-  //事件
+  /**路由 */
+  //返回上一页
   handlerGobackClick(delta) {
     const pages = getCurrentPages();
     if (pages.length >= 2) {
@@ -24,6 +25,7 @@ Page({
       });
     }
   },
+  //返回首页
   handlerGohomeClick() {
     wx.navigateTo({
       url: '/pages/index/index'
@@ -34,6 +36,13 @@ Page({
     let that = this;
     that.setData({
       loginFlag: true
+    })
+  },
+  //取消
+  cancel(){
+    let that = this;
+    that.setData({
+      loginFlag: false
     })
   },
   /**

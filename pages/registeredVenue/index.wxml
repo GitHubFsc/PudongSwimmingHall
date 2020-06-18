@@ -6,72 +6,333 @@
 	<view class="bgimg">
 		<image src="./../images/registeredtop.png"></image>
 	</view>
-	<view class="body">
-    <view class="title">信息填写</view>
-    <view class="body_input">
-      <view class="txt">场馆名称</view>
-      <view class="input"><input type="text" placeholder="高危证经营机构名称"></input></view>
-    </view>
-    <view class="body_input">
-      <view class="txt">场馆别称</view>
-      <view class="input"><input type="text" placeholder="高危场馆别名"></input></view>
-    </view>
-    <view class="body_input">
-      <view class="txt">经营地址</view>
-      <view class="input"><input type="text" placeholder="高危证上经营机构地址"></input></view>
-    </view>
-    <view class="body_input">
-      <view class="txt">场馆电话</view>
-      <view class="input"><input type="text" placeholder="高危证上经营机构地址"></input></view>
-    </view>
-    <view class="body_input">
-      <view class="txt">场馆负责人姓名</view>
-      <view class="input"><input type="text" placeholder="场馆负责人姓名"></input></view>
-    </view>
-    <view class="body_input">
-      <view class="txt">场馆负责人手机（会拨打）</view>
-      <view class="input"><input type="text" placeholder="场馆负责人手机号"></input></view>
-    </view>
-
-
-
-
+	<view class="rv_title">注册</view>
+	<view class="rv_txt">通过后台审核后才可操作</view>
+	<view class="main">
+		<view class="body">
+			<view class="title">信息填写</view>
+			<view class="body_input">
+				<view class="txt">场馆名称</view>
+				<view class="input"><input type="text" placeholder="高危证经营机构名称" bindblur="inputWatch" data-model="venues_name" value="{{venues_name}}"></input></view>
+			</view>
+			<view class="body_input">
+				<view class="txt">场馆别称</view>
+				<view class="input"><input type="text" placeholder="高危场馆别名" bindblur="inputWatch" data-model="venues_another_name" value="{{venues_another_name}}"></input></view>
+			</view>
+			<view class="body_input">
+				<view class="txt">经营地址</view>
+				<view class="input"><input type="text" placeholder="高危证上经营机构地址" bindblur="inputWatch" data-model="address" value="{{address}}"></input></view>
+			</view>
+			<view class="body_input">
+				<view class="txt">场馆电话</view>
+				<view class="input" style="width: 504rpx;"><input type="text" placeholder="场馆固定电话，若没有可填负责人手机号" bindblur="inputWatch" data-model="tel" value="{{tel}}"></input></view>
+			</view>
+			<view class="body_input">
+				<view class="txt">场馆负责人姓名</view>
+				<view class="input"><input type="text" placeholder="场馆负责人姓名" bindblur="inputWatch" data-model="head_name" value="{{head_name}}"></input></view>
+			</view>
+			<view class="body_input">
+				<view class="txt" style="width: 426rpx;">场馆负责人手机（会拨打）</view>
+				<view class="input"><input type="text" placeholder="场馆负责人手机号" bindblur="inputWatch" data-model="head_mobile" value="{{head_mobile}}"></input></view>
+			</view>
+		</view>
+		<view class="bodyImg">
+			<view class="title">
+				<view>营业执照照片</view>
+				<view class="num">{{business_license.length}}/4</view>
+			</view>
+			<view class="examples_box">
+				<view class="eb_title" data-index="0" catchtap="examples">
+					<view>示例</view>
+					<view class="show">
+						<image src="{{examplesList[0].flag?'./../icon/up.png':'./../icon/down.png'}}"></image>
+					</view>
+				</view>
+				<view class="eb_imgs" wx:if="{{examplesList[0].flag}}">
+					<block wx:for="{{examplesList[0].imglist}}" wx:key="index">
+						<view class="eb_img">
+							<image src="{{item}}" />
+						</view>
+					</block>
+				</view>
+			</view>
+			<view class="ImgList" wx:if="{{!examplesList[0].flag}}">
+				<view class="imgs">
+					<block wx:for="{{business_license}}" wx:key="index">
+						<view class="item" wx:if="{{index<4}}">
+              <view class="img" catchtap="previewImage" data-model="business_license" data-src="{{item}}"><image src="{{item}}" mode="aspectFill" /></view>
+              <view class="del" catchtap="delete" data-model="business_license" data-index="{{index}}" wx:if="{{status==0||status==3}}"><image src="./../icon/del.png"></image></view>
+						</view>
+					</block>
+				</view>
+				<view class="addimg" data-model="business_license" catchtap="fileUpload" wx:if="{{business_license.length<4}}">
+					<image src="./../icon/addimg.png"></image>
+				</view>
+			</view>
+		</view>
+		<view class="bodyImg">
+			<view class="title">
+				<view>高危许可证照片</view>
+				<view class="num">{{high_risk_permit.length}}/4</view>
+			</view>
+			<view class="examples_box">
+				<view class="eb_title" data-index="1" catchtap="examples">
+					<view>示例</view>
+					<view class="show">
+						<image src="{{examplesList[1].flag?'./../icon/up.png':'./../icon/down.png'}}"></image>
+					</view>
+				</view>
+				<view class="eb_imgs" wx:if="{{examplesList[1].flag}}">
+					<block wx:for="{{examplesList[1].imglist}}" wx:key="index">
+						<view class="eb_img">
+							<image src="{{item}}" />
+						</view>
+					</block>
+				</view>
+			</view>
+			<view class="ImgList" wx:if="{{!examplesList[1].flag}}">
+				<view class="imgs">
+					<block wx:for="{{high_risk_permit}}" wx:key="index">
+						<view class="item" wx:if="{{index<4}}">
+              <view class="img" catchtap="previewImage" data-model="high_risk_permit" data-src="{{item}}"><image src="{{item}}" mode="aspectFill" /></view>
+              <view class="del" catchtap="delete" data-model="high_risk_permit" data-index="{{index}}" wx:if="{{status==0||status==3}}"><image src="./../icon/del.png"></image></view>
+						</view>
+					</block>
+				</view>
+				<view class="addimg" data-model="high_risk_permit" catchtap="fileUpload" wx:if="{{high_risk_permit.length<4}}">
+					<image src="./../icon/addimg.png"></image>
+				</view>
+			</view>
+			<view class="picker_box">
+				<picker mode="date" value="{{date}}" start="2000-01-01" end="3000-01-01" bindchange="bindDateChange">
+					<view class="picker"> 高危许可证有效期 <text>{{highlevelpermit_time}}</text></view>
+				</picker>
+				<view class="more">
+					<image src="./../icon/more.png"></image>
+				</view>
+			</view>
+		</view>
+		<view class="bodyImg">
+			<view class="title">
+				<view>卫生许可证照片<text>（许可证、公示栏、救生设备）</text></view>
+				<view class="num">{{sanitary_permit.length}}/4</view>
+			</view>
+			<view class="examples_box">
+				<view class="eb_title" data-index="2" catchtap="examples">
+					<view>示例</view>
+					<view class="show">
+						<image src="{{examplesList[2].flag?'./../icon/up.png':'./../icon/down.png'}}"></image>
+					</view>
+				</view>
+				<view class="eb_imgs" wx:if="{{examplesList[2].flag}}">
+					<block wx:for="{{examplesList[2].imglist}}" wx:key="index">
+						<view class="eb_img">
+							<image src="{{item}}" />
+						</view>
+					</block>
+				</view>
+			</view>
+			<view class="ImgList" wx:if="{{!examplesList[2].flag}}">
+				<view class="imgs">
+					<block wx:for="{{sanitary_permit}}" wx:key="index">
+						<view class="item" wx:if="{{index<4}}">
+              <view class="img" catchtap="previewImage" data-model="sanitary_permit" data-src="{{item}}"><image src="{{item}}" mode="aspectFill" /></view>
+              <view class="del" catchtap="delete" data-model="sanitary_permit" data-index="{{index}}" wx:if="{{status==0||status==3}}"><image src="./../icon/del.png"></image></view>
+						</view>
+					</block>
+				</view>
+				<view class="addimg" data-model="sanitary_permit" catchtap="fileUpload" wx:if="{{sanitary_permit.length<4}}">
+					<image src="./../icon/addimg.png"></image>
+				</view>
+			</view>
+		</view>
+		<view class="bodyImg">
+			<view class="title">
+				<view>场馆门头照片 <text>（场馆门头、前台放置健身海报）</text></view>
+				<view class="num">{{venue_head.length}}/4</view>
+			</view>
+			<view class="examples_box">
+				<view class="eb_title" data-index="3" catchtap="examples">
+					<view>示例</view>
+					<view class="show">
+						<image src="{{examplesList[3].flag?'./../icon/up.png':'./../icon/down.png'}}"></image>
+					</view>
+				</view>
+				<view class="eb_imgs" wx:if="{{examplesList[3].flag}}">
+					<block wx:for="{{examplesList[3].imglist}}" wx:key="index">
+						<view class="eb_img">
+							<image src="{{item}}" />
+						</view>
+					</block>
+				</view>
+			</view>
+			<view class="ImgList" wx:if="{{!examplesList[3].flag}}">
+				<view class="imgs">
+					<block wx:for="{{venue_head}}" wx:key="index">
+						<view class="item" wx:if="{{index<4}}">
+              <view class="img" catchtap="previewImage" data-model="venue_head" data-src="{{item}}"><image src="{{item}}" mode="aspectFill" /></view>
+              <view class="del" catchtap="delete" data-model="venue_head" data-index="{{index}}" wx:if="{{status==0||status==3}}"><image src="./../icon/del.png"></image></view>
+						</view>
+					</block>
+				</view>
+				<view class="addimg" data-model="venue_head" catchtap="fileUpload" wx:if="{{venue_head.length<4}}">
+					<image src="./../icon/addimg.png"></image>
+				</view>
+			</view>
+		</view>
+		<view class="bodyImg">
+			<view class="title">
+				<view>泳池照片<text>（多角度照、浸脚池照、水深标识照）</text></view>
+				<view class="num">{{swimming_pool.length}}/4</view>
+			</view>
+			<view class="examples_box">
+				<view class="eb_title" data-index="4" catchtap="examples">
+					<view>示例</view>
+					<view class="show">
+						<image src="{{examplesList[4].flag?'./../icon/up.png':'./../icon/down.png'}}"></image>
+					</view>
+				</view>
+				<view class="eb_imgs" wx:if="{{examplesList[4].flag}}">
+					<block wx:for="{{examplesList[4].imglist}}" wx:key="index">
+						<view class="eb_img">
+							<image src="{{item}}" />
+						</view>
+					</block>
+				</view>
+			</view>
+			<view class="ImgList" wx:if="{{!examplesList[4].flag}}">
+				<view class="imgs">
+					<block wx:for="{{swimming_pool}}" wx:key="index">
+						<view class="item" wx:if="{{index<4}}">
+              <view class="img" catchtap="previewImage" data-model="swimming_pool" data-src="{{item}}"><image src="{{item}}" mode="aspectFill" /></view>
+              <view class="del" catchtap="delete" data-model="swimming_pool" data-index="{{index}}" wx:if="{{status==0||status==3}}"><image src="./../icon/del.png"></image></view>
+						</view>
+					</block>
+				</view>
+				<view class="addimg" data-model="swimming_pool" catchtap="fileUpload" wx:if="{{swimming_pool.length<4}}">
+					<image src="./../icon/addimg.png"></image>
+				</view>
+			</view>
+		</view>
+		<view class="bodyImg">
+			<view class="title">
+				<view>证照公式照片<text>（三证、上岗证、水质公示栏及游客须知）</text></view>
+				<view class="num">{{certificate_formula.length}}/4</view>
+			</view>
+			<view class="examples_box">
+				<view class="eb_title" data-index="5" catchtap="examples">
+					<view>示例</view>
+					<view class="show">
+						<image src="{{examplesList[5].flag?'./../icon/up.png':'./../icon/down.png'}}"></image>
+					</view>
+				</view>
+				<view class="eb_imgs" wx:if="{{examplesList[5].flag}}">
+					<block wx:for="{{examplesList[5].imglist}}" wx:key="index">
+						<view class="eb_img">
+							<image src="{{item}}" />
+						</view>
+					</block>
+				</view>
+			</view>
+			<view class="ImgList" wx:if="{{!examplesList[5].flag}}">
+				<view class="imgs">
+					<block wx:for="{{certificate_formula}}" wx:key="index">
+						<view class="item" wx:if="{{index<4}}">
+              <view class="img" catchtap="previewImage" data-model="certificate_formula" data-src="{{item}}"><image src="{{item}}" mode="aspectFill" /></view>
+              <view class="del" catchtap="delete" data-model="certificate_formula" data-index="{{index}}" wx:if="{{status==0||status==3}}"><image src="./../icon/del.png"></image></view>
+						</view>
+					</block>
+				</view>
+				<view class="addimg" data-model="certificate_formula" catchtap="fileUpload" wx:if="{{certificate_formula.length<4}}">
+					<image src="./../icon/addimg.png"></image>
+				</view>
+			</view>
+		</view>
+		<view class="bodyImg">
+			<view class="title">
+				<view>救生器材照片<text>（带颈托救生担架、氧气瓶、救生杆、救生圈）</text></view>
+				<view class="num">{{buoyant_apparatus.length}}/4</view>
+			</view>
+			<view class="examples_box">
+				<view class="eb_title" data-index="6" catchtap="examples">
+					<view>示例</view>
+					<view class="show">
+						<image src="{{examplesList[6].flag?'./../icon/up.png':'./../icon/down.png'}}"></image>
+					</view>
+				</view>
+				<view class="eb_imgs" wx:if="{{examplesList[6].flag}}">
+					<block wx:for="{{examplesList[6].imglist}}" wx:key="index">
+						<view class="eb_img">
+							<image src="{{item}}" />
+						</view>
+					</block>
+				</view>
+			</view>
+			<view class="ImgList" wx:if="{{!examplesList[6].flag}}">
+				<view class="imgs">
+					<block wx:for="{{buoyant_apparatus}}" wx:key="index">
+						<view class="item" wx:if="{{index<4}}">
+              <view class="img" catchtap="previewImage" data-model="buoyant_apparatus" data-src="{{item}}"><image src="{{item}}" mode="aspectFill" /></view>
+              <view class="del" catchtap="delete" data-model="buoyant_apparatus" data-index="{{index}}" wx:if="{{status==0||status==3}}"><image src="./../icon/del.png"></image></view>
+						</view>
+					</block>
+				</view>
+				<view class="addimg" data-model="buoyant_apparatus" catchtap="fileUpload" wx:if="{{buoyant_apparatus.length<4}}">
+					<image src="./../icon/addimg.png"></image>
+				</view>
+			</view>
+		</view>
+		<view class="bodyImg">
+			<view class="title">
+				<view>监控设备照片<text>（所有监控角度、监控回放日历照片）</text></view>
+				<view class="num">{{monitoring_aids.length}}/4</view>
+			</view>
+			<view class="examples_box">
+				<view class="eb_title" data-index="7" catchtap="examples">
+					<view>示例</view>
+					<view class="show">
+						<image src="{{examplesList[7].flag?'./../icon/up.png':'./../icon/down.png'}}"></image>
+					</view>
+				</view>
+				<view class="eb_imgs" wx:if="{{examplesList[7].flag}}">
+					<block wx:for="{{examplesList[7].imglist}}" wx:key="index">
+						<view class="eb_img">
+							<image src="{{item}}" />
+						</view>
+					</block>
+				</view>
+			</view>
+			<view class="ImgList" wx:if="{{!examplesList[7].flag}}">
+				<view class="imgs">
+					<block wx:for="{{monitoring_aids}}" wx:key="index">
+						<view class="item" wx:if="{{index<4}}">
+              <view class="img" catchtap="previewImage" data-model="monitoring_aids" data-src="{{item}}"><image src="{{item}}" mode="aspectFill" /></view>
+              <view class="del" catchtap="delete" data-model="monitoring_aids" data-index="{{index}}" wx:if="{{status==0||status==3}}"><image src="./../icon/del.png"></image></view>
+						</view>
+					</block>
+				</view>
+				<view class="addimg" data-model="monitoring_aids" catchtap="fileUpload" wx:if="{{monitoring_aids.length<4}}">
+					<image src="./../icon/addimg.png"></image>
+				</view>
+			</view>
+		</view>
 	</view>
-  <view class="body">
-    <view class="title"><view>营业执照照片</view><view>0/4</view></view>
-    <view></view>
-
-
-
+	<view class="btn">
+		<view class="registere" catchtap="registered">提交</view>
 	</view>
-  <view class="businessLicense">
-    <view class="title"><view>营业执照照片</view><view>0/4</view></view>
-    <view class="">
-      <view>
-        <view>示例</view>
-        <view><image src="{{examplesList[0]?'':''}}"></image></view>
-      </view>
-      <view>
-        <block wx:for="{{4}}">
-          <view><image src=""/></view>
-        </block>
-      </view>
-    </view>
 
 
-
-	</view>
 
 
 
 	<view class="prompt_box" wx:if="{{loginFlag}}">
 		<view class="promptBox">
 			<view class="title">提示</view>
-			<view class="txt">{{msg}}</view>
+			<view class="txt">{{status==1?'审核中':'审核未通过'}}</view>
+      <view class="txt" wx:if="{{status==3}}">{{reason}}</view>
 			<view class="pb_btn">
-				<button class="cancel">取消</button>
-				<button class="confirm" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{loginType==0}}">确定</button>
-				<button class="confirm" open-type="getUserInfo" bindgetuserinfo="getUserInfo" wx:if="{{loginType==1}}">确定</button>
+        <button class="confirm" catchtap="confirm">{{status==1?'确认':'去更改'}}</button>
+				<button class="cancel" catchtap="cancel">取消</button>
 			</view>
 		</view>
 	</view>

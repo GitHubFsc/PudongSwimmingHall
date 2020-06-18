@@ -1,13 +1,17 @@
 {
   "pages": [
-    "pages/registeredVenue/index",
     "pages/index/index",
-    "pages/wxlogin/index",
-    "pages/login/index",
     "pages/lifeguardInformation/index",
     "pages/accidentReport/index",
     "pages/importantNotice/index",
-    "components/navber/index"
+    "pages/registeredVenue/index",
+    "pages/wxlogin/index",
+    "pages/login/index",
+    "components/navber/index",
+    "pages/myVenue/index",
+    "pages/waterAndQuality/index",
+    "pages/passengerFlow/index",
+    "pages/addLifeguard/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -47,7 +51,7 @@
     ]
   },
   "usingComponents": {
-    "navBar": "./../../components/navber/index"
+    "navBar": "components/navber/index"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

@@ -1,4 +1,4 @@
-/* pages/registeredVenue/index.wxss */
+/* pages/myVenue/index.wxss */
 .container {
   width: 100%;
   height: 100%;
@@ -13,39 +13,16 @@
 
 .bgimg {
   width: 100%;
-  height: 485rpx;
+  height: auto;
   position: absolute;
   top: 0;
   left: 0;
   z-index: 1;
 }
-
-.rv_title {
-  width: auto;
-  font-size: 42rpx;
-  font-weight: bold;
-  color: rgba(255, 255, 255, 1);
-  position: absolute;
-  top: 130rpx;
-  left: 25rpx;
-  z-index: 2;
-}
-
-.rv_txt {
-  width: auto;
-  font-size: 30rpx;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 1);
-  position: absolute;
-  top: 190rpx;
-  left: 25rpx;
-  z-index: 2;
-}
-
 .main {
   width: 700rpx;
   position: relative;
-  top: 340rpx;
+  top: 170rpx;
   left: 25rpx;
   z-index: 2;
 }
@@ -94,7 +71,7 @@
   color: #C5C5C5;
 }
 
-.body .body_input .input input {
+.body .body_input .input text {
   text-align: right;
 }
 
@@ -126,37 +103,8 @@
   font-weight: 400;
   color: rgba(1, 1, 1, 1);
 }
-.bodyImg .examples_box{
-  width: 100%;
-  height: auto;
-}
-.bodyImg .examples_box .eb_title{
-  width: 100%;
-  height: auto;
-  text-align: center;
-  font-size:28rpx;
-  font-weight:400;
-  color:rgba(78,164,251,1);
-  display: flex;
-  justify-content: center;
-}
-.bodyImg .examples_box .show{
-  width: 36rpx;
-  height: 36rpx;
-  margin-left: 12rpx;
-}
-.bodyImg .examples_box .eb_imgs{
-  width: 100%;
-  height: auto;
-  background-color: #E8E6E6;
-  padding: 20rpx;
-  display: flex;
-  justify-content: space-between;
-}
-.bodyImg .examples_box .eb_img ,
-.bodyImg .ImgList .imgs .img,
-.bodyImg .ImgList .addimg
-{
+
+.bodyImg .ImgList .imgs .img{
   width: 140rpx;
   height: 140rpx;
   margin-right: 20rpx;
@@ -172,54 +120,33 @@
   height: auto;
   display: flex;
 }
-
-.bodyImg .picker_box{
-  width: 100%;
-  height: auto;
-  position: relative;
-}
-
-.bodyImg .picker_box .picker text{
+.bodyImg .picker_box text{
   display: inline-block;
-  width: 360rpx;
-  height: 48rpx;
+  width: 372rpx;
   text-align: right;
-  line-height: 48rpx;
+  font-size:28rpx;
+  font-weight:400;
+  color:rgba(134,134,134,1);
 }
-.bodyImg .picker_box .more{
-  width: 14rpx;
-  height: 24rpx;
-  position: absolute;
-  top: 0 ;
-  right: 0;
-}
-
-
-.btn {
+.service_box {
   width: 100%;
   height: auto;
-  padding-top: 450rpx;
+  padding-top: 200rpx;
   padding-bottom: 150rpx;
-}
-
-.registere {
-  width: 340rpx;
-  height: 80rpx;
-  background: rgba(78, 164, 251, 1);
-  border-radius: 80rpx;
   text-align: center;
-  line-height: 80rpx;
-  font-size: 38rpx;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 1);
-  margin: 0 auto;
+  line-height: 50rpx;
 }
-.promptBox .confirm {
-  border-radius: 0 0 0 10rpx !important;
-  border-right: 1rpx solid #f4f4f4;
+.service_box text{  
+  font-size:26rpx;
+  font-weight:400;
+  color:rgba(186,186,186,1);
+  margin-right: 18rpx;
+}
+.service_box .service{
+  width: 42rpx;
+  height: 50rpx;
+  display: inline-block;
+  margin: 40rpx 20rpx;
+}
 
-}
-.promptBox .cancel {
-  border-radius: 0 0 10rpx 0 !important;
-}
   

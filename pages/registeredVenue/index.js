@@ -9,6 +9,7 @@ import {
   GetBuoyantApparatus,
   GetMonitoringAids,
   PostVenuesRegistered,
+  GetVenuesDetail,
   getSign
 } from './../../utils/axios.js';
 const app = getApp()
@@ -36,7 +37,15 @@ Page({
     certificate_formula: [],
     buoyant_apparatus: [],
     monitoring_aids: [],
-    examplesList : [false,false,false,false,false,false,false,false],
+    examplesList : [
+      {flag:false,imglist:[]},
+      {flag:false,imglist:[]},
+      {flag:false,imglist:[]},
+      {flag:false,imglist:[]},
+      {flag:false,imglist:[]},
+      {flag:false,imglist:[]},
+      {flag:false,imglist:[]},
+      {flag:false,imglist:[]}],
     loginFlag : false
   },
   /**路由 */
@@ -46,7 +55,7 @@ Page({
     let that = this;
     let examplesList =that.data.examplesList,
     index = e.currentTarget.dataset.index;
-    examplesList[index] = !examplesList[index];
+    examplesList[index].flag = !examplesList[index].flag ;
     that.setData({
       examplesList
     })
@@ -54,16 +63,49 @@ Page({
   //文件上传
   fileUpload(e){
     let that = this;
-    let name = e.currentTarget.dataset.name;
+    that.data.model = e.currentTarget.dataset.model
     wx.chooseImage({
       count: 4,
       sizeType: ['original', 'compressed'],
       sourceType: ['album', 'camera'],
       success (res) {
-        let tempFilePaths = res.tempFilePaths
-        console.log(tempFilePaths);
-        that.postUploadFile(tempFilePaths,name);
+        that.postUploadFile(res.tempFilePaths);
       }
+    })
+  },
+  // 输入监听
+  inputWatch(e) {
+    console.log(e);
+    let item = e.currentTarget.dataset.model;
+    this.setData({
+        [item]: e.detail.value
+    });
+    console.log([item],this.data)
+  },
+  //图片预览
+  previewImage(e){
+    let that = this;
+    let urls = that.data[e.currentTarget.dataset.model];
+    wx.previewImage({
+      current: e.currentTarget.dataset.src, // 当前显示图片的http链接
+      urls: urls // 需要预览的图片http链接列表
+    })
+  },
+  //删除图片
+  delete(e) {
+    let that = this;
+    let model = e.currentTarget.dataset.model
+    let imglist = that.data[model];
+    imglist.splice(e.currentTarget.dataset.index, 1);
+    that.setData({
+      [model] : imglist
+    })
+  },
+  //高危许可证有效期
+  bindDateChange: function(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      highlevelpermit_time: e.detail.value
     })
   },
   //提交注册
@@ -180,7 +222,23 @@ Page({
 
     })
   },
-
+  //取消
+  cancel(){
+    let that = this;
+    that.setData({
+      loginFlag: false
+    })
+  },
+  //确认 / 去更改
+  confirm(){
+    let that = this;
+    let status = that.data.status;
+    if(status==1){
+      console.log('审核中');
+    }else{
+      console.log('审核失败')
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -190,8 +248,19 @@ Page({
         venues_id: options.id,
         status: options.status,
         reason: options.reason,
+        loginFlag : true 
       })
-
+      if(options.status==1 || options.status==3){
+        this.getVenuesDetail()
+      }
+      this.getBusinesslicenseDemo();
+      this.getHighLevelPermit();
+      this.getSanitaryPermit();
+      this.getVenueHeadt();
+      this.getSwimmingPool();
+      this.getCertificationFormula();
+      this.getBuoyantApparatus();
+      this.getMonitoringAids();
     }
   },
 
@@ -244,10 +313,11 @@ Page({
 
   },
 
+
   /**API */
   //营业执照片示例
   getBusinesslicenseDemo() {
-    let business_license = this.data.business_license;
+    let examplesList = this.data.examplesList;
     GetBusinesslicenseDemo({
       rnd: 1,
       sign: getSign(`rnd=1`)
@@ -255,10 +325,10 @@ Page({
       if (res.data.ErrCode == 0) {
         console.log(res);
         res.data.Response.map(arr => {
-          business_license.push(arr.img_url)
+          examplesList[0].imglist.push(arr.img_url)
         })
         this.setData({
-          business_license
+          examplesList
         })
       } else {
         wx.showToast({
@@ -270,7 +340,7 @@ Page({
   },
   //高危许可证照片示例
   getHighLevelPermit() {
-    let high_risk_permit = this.data.high_risk_permit;
+    let examplesList = this.data.examplesList;
     GetHighLevelPermit({
       rnd: 1,
       sign: getSign(`rnd=1`)
@@ -278,10 +348,10 @@ Page({
       if (res.data.ErrCode == 0) {
         console.log(res);
         res.data.Response.map(arr => {
-          high_risk_permit.push(arr.img_url)
+          examplesList[1].imglist.push(arr.img_url)
         })
         this.setData({
-          high_risk_permit
+          examplesList
         })
       } else {
         wx.showToast({
@@ -293,7 +363,7 @@ Page({
   },
   //卫生许可证照片示例
   getSanitaryPermit() {
-    let sanitary_permit = this.data.sanitary_permit;
+    let examplesList = this.data.examplesList;
     GetSanitaryPermit({
       rnd: 1,
       sign: getSign(`rnd=1`)
@@ -301,10 +371,10 @@ Page({
       if (res.data.ErrCode == 0) {
         console.log(res);
         res.data.Response.map(arr => {
-          sanitary_permit.push(arr.img_url)
+          examplesList[2].imglist.push(arr.img_url)
         })
         this.setData({
-          sanitary_permit
+          examplesList
         })
       } else {
         wx.showToast({
@@ -316,7 +386,7 @@ Page({
   },
   //场馆门头照片示例
   getVenueHeadt() {
-    let venue_head = this.data.venue_head;
+    let examplesList = this.data.examplesList;
     GetVenueHeadt({
       rnd: 1,
       sign: getSign(`rnd=1`)
@@ -324,10 +394,10 @@ Page({
       if (res.data.ErrCode == 0) {
         console.log(res);
         res.data.Response.map(arr => {
-          venue_head.push(arr.img_url)
+          examplesList[3].imglist.push(arr.img_url)
         })
         this.setData({
-          venue_head
+          examplesList
         })
       } else {
         wx.showToast({
@@ -339,7 +409,7 @@ Page({
   },
   //泳池照片示例
   getSwimmingPool() {
-    let swimming_pool = this.data.swimming_pool;
+    let examplesList = this.data.examplesList;
     GetSwimmingPool({
       rnd: 1,
       sign: getSign(`rnd=1`)
@@ -347,10 +417,10 @@ Page({
       if (res.data.ErrCode == 0) {
         console.log(res);
         res.data.Response.map(arr => {
-          swimming_pool.push(arr.img_url)
+          examplesList[4].imglist.push(arr.img_url)
         })
         this.setData({
-          swimming_pool
+          examplesList
         })
       } else {
         wx.showToast({
@@ -362,7 +432,7 @@ Page({
   },
   //证照公式照片示例
   getCertificationFormula() {
-    let certificate_formula = this.data.certificate_formula;
+    let examplesList = this.data.examplesList;
     GetCertificationFormula({
       rnd: 1,
       sign: getSign(`rnd=1`)
@@ -370,10 +440,10 @@ Page({
       if (res.data.ErrCode == 0) {
         console.log(res);
         res.data.Response.map(arr => {
-          certificate_formula.push(arr.img_url)
+          examplesList[5].imglist.push(arr.img_url)
         })
         this.setData({
-          certificate_formula
+          examplesList
         })
       } else {
         wx.showToast({
@@ -385,7 +455,7 @@ Page({
   },
   //救生器材照片示例
   getBuoyantApparatus() {
-    let buoyant_apparatus = this.data.buoyant_apparatus;
+    let examplesList = this.data.examplesList;
     GetBuoyantApparatus({
       rnd: 1,
       sign: getSign(`rnd=1`)
@@ -393,10 +463,10 @@ Page({
       if (res.data.ErrCode == 0) {
         console.log(res);
         res.data.Response.map(arr => {
-          buoyant_apparatus.push(arr.img_url)
+          examplesList[6].imglist.push(arr.img_url)
         })
         this.setData({
-          buoyant_apparatus
+          examplesList
         })
       } else {
         wx.showToast({
@@ -408,7 +478,7 @@ Page({
   },
   //监控设备照片示例
   getMonitoringAids() {
-    let monitoring_aids = this.data.monitoring_aids;
+    let examplesList = this.data.examplesList;
     GetMonitoringAids({
       rnd: 1,
       sign: getSign(`rnd=1`)
@@ -416,10 +486,10 @@ Page({
       if (res.data.ErrCode == 0) {
         console.log(res);
         res.data.Response.map(arr => {
-          monitoring_aids.push(arr.img_url)
+          examplesList[7].imglist.push(arr.img_url)
         })
         this.setData({
-          monitoring_aids
+          examplesList
         })
       } else {
         wx.showToast({
@@ -429,6 +499,7 @@ Page({
       }
     })
   },
+
   //场馆注册/修改
   postVenuesRegistered(callback){
     let datas = [];
@@ -437,6 +508,9 @@ Page({
     let {venues_id,venues_name,venues_another_name,address,tel,head_name,head_mobile,highlevelpermit_time,business_license,
       high_risk_permit,sanitary_permit,venue_head,swimming_pool,certificate_formula,buoyant_apparatus,monitoring_aids,
     } = this.data;
+    highlevelpermit_time = highlevelpermit_time.replace(/(\d{4})\-(\d{2})\-(\d{2})/, "$1/$2/$3") + ' 00:00';
+    highlevelpermit_time = new Date(highlevelpermit_time).getTime();
+    console.log(highlevelpermit_time);
     PostVenuesRegistered({
       body :{
         venues_id : venues_id,
@@ -468,10 +542,49 @@ Page({
       }
     })
   },
+  //我的场馆信息
+  getVenuesDetail(){
+    let that = this,venues_id = that.data.venues_id,user_id = app.globalData.user_id;
+    GetVenuesDetail({
+      venues_id :venues_id,
+      user_id : user_id,
+      sign : getSign(`venues_id=${venues_id}&user_id=${user_id}`)
+    }).then(res=>{
+      if (res.data.ErrCode == 0) {
+        console.log(res);
+        that.setData({
+          venues_name: res.data.Response.venues_name,
+          venues_another_name :res.data.Response.venues_another_name,
+          address :res.data.Response.address,
+          tel :res.data.Response. tel,
+          head_name:res.data.Response.head_name,
+          head_mobile :res.data.Response.head_mobile,
+          business_license :res.data.Response.business_license.map(arr=>{return arr.img_url}),
+          high_risk_permit :res.data.Response.high_risk_permit.map(arr=>{return arr.img_url}),
+          highlevelpermit_time: res.data.Response.highlevelpermit_time,
+          sanitary_permit: res.data.Response.sanitary_permit.map(arr=>{return arr.img_url}),
+          venue_head:res.data.Response.venue_head.map(arr=>{return arr.img_url}),
+          swimming_pool: res.data.Response.swimming_pool.map(arr=>{return arr.img_url}),
+          certificate_formula :res.data.Response.certificate_formula.map(arr=>{return arr.img_url}),
+          buoyant_apparatus :res.data.Response.buoyant_apparatus.map(arr=>{return arr.img_url}),
+          monitoring_aids :res.data.Response. monitoring_aids.map(arr=>{return arr.img_url}),
+        })
+      } else {
+        wx.showToast({
+          title: res.data.ErrMsg,
+          icon: 'none',
+        })
+      }
+    })
+  },
+
+
+
   //文件上传
-  postUploadFile(arr,name) {
-    console.log(arr,name);
+  postUploadFile(arr) {
     let that = this;
+    let imgArr = that.data[that.data.model];
+    console.log(that.data.model)
     for (let i = 0; i < arr.length; i++) {
       console.log(arr[i]);
       wx.uploadFile({
@@ -484,12 +597,14 @@ Page({
           var p = JSON.parse(res.data);
           console.log(p)
           if (p.ErrCode == 0) {
-            name.push(p.Response)
-            console.log("name", name);
+            if(imgArr.length<4){
+              imgArr.push(p.Response);
+            }
+            console.log("imgArr", imgArr);
             that.setData({
-              [name] : name
+              [that.data.model] : imgArr
             })
-            wx.hideLoading()
+            console.log(that.data);
           } else {
             wx.showToast({
               title: p.ErrMsg,

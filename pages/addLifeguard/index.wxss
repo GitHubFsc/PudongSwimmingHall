@@ -1,4 +1,4 @@
-/* pages/registeredVenue/index.wxss */
+/* pages/addLifeguard/index.wxss */
 .container {
   width: 100%;
   height: 100%;
@@ -13,39 +13,17 @@
 
 .bgimg {
   width: 100%;
-  height: 485rpx;
+  height: auto;
   position: absolute;
   top: 0;
   left: 0;
   z-index: 1;
 }
 
-.rv_title {
-  width: auto;
-  font-size: 42rpx;
-  font-weight: bold;
-  color: rgba(255, 255, 255, 1);
-  position: absolute;
-  top: 130rpx;
-  left: 25rpx;
-  z-index: 2;
-}
-
-.rv_txt {
-  width: auto;
-  font-size: 30rpx;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 1);
-  position: absolute;
-  top: 190rpx;
-  left: 25rpx;
-  z-index: 2;
-}
-
 .main {
   width: 700rpx;
   position: relative;
-  top: 340rpx;
+  top: 170rpx;
   left: 25rpx;
   z-index: 2;
 }
@@ -98,6 +76,32 @@
   text-align: right;
 }
 
+.body_input .radio_box {
+  display: flex;
+  justify-content: space-around;
+}
+
+.body_input .radio_box .radio {
+  width: auto;
+  height: auto;
+  margin-left: 60rpx;
+  display: flex;
+  justify-content: space-around;
+}
+
+.body_input .radio_box .radio .radio_img {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 16rpx;
+}
+
+.body_input .radio_box .radio .radio_txt {
+  font-size:32rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  color:rgba(17,17,17,1);
+}
+
 .bodyImg {
   width: 700rpx;
   height: auto;
@@ -126,26 +130,30 @@
   font-weight: 400;
   color: rgba(1, 1, 1, 1);
 }
-.bodyImg .examples_box{
+
+.bodyImg .examples_box {
   width: 100%;
   height: auto;
 }
-.bodyImg .examples_box .eb_title{
+
+.bodyImg .examples_box .eb_title {
   width: 100%;
   height: auto;
   text-align: center;
-  font-size:28rpx;
-  font-weight:400;
-  color:rgba(78,164,251,1);
+  font-size: 28rpx;
+  font-weight: 400;
+  color: rgba(78, 164, 251, 1);
   display: flex;
   justify-content: center;
 }
-.bodyImg .examples_box .show{
+
+.bodyImg .examples_box .show {
   width: 36rpx;
   height: 36rpx;
   margin-left: 12rpx;
 }
-.bodyImg .examples_box .eb_imgs{
+
+.bodyImg .examples_box .eb_imgs {
   width: 100%;
   height: auto;
   background-color: #E8E6E6;
@@ -153,73 +161,78 @@
   display: flex;
   justify-content: space-between;
 }
-.bodyImg .examples_box .eb_img ,
-.bodyImg .ImgList .imgs .img,
-.bodyImg .ImgList .addimg
-{
+
+.bodyImg .examples_box .eb_img {
   width: 140rpx;
   height: 140rpx;
-  margin-right: 20rpx;
+  margin-right: 32rpx;
 }
-.bodyImg .ImgList{
+.bodyImg .ImgList .addimg{
+  width: 140rpx;
+  height: 140rpx;
+  margin-left: 6rpx;
+}
+
+.bodyImg .ImgList {
   width: 100%;
   height: auto;
   padding: 20rpx 0;
   display: flex;
 }
-.bodyImg .ImgList .imgs{
+
+.bodyImg .ImgList .imgs {
   width: auto;
   height: auto;
   display: flex;
 }
-
-.bodyImg .picker_box{
-  width: 100%;
-  height: auto;
+.bodyImg .ImgList .imgs .item{
+  width: 140rpx;
+  height: 140rpx;
+  margin-right: 26rpx;
   position: relative;
 }
-
-.bodyImg .picker_box .picker text{
-  display: inline-block;
-  width: 360rpx;
-  height: 48rpx;
-  text-align: right;
-  line-height: 48rpx;
+.bodyImg .ImgList .imgs .item .img{
+  width: 100%;
+  height: 100%;
 }
-.bodyImg .picker_box .more{
-  width: 14rpx;
-  height: 24rpx;
+.bodyImg .ImgList .imgs .item .del{
+  width: 25rpx;
+  height: 25rpx;
   position: absolute;
-  top: 0 ;
-  right: 0;
+  top: -24rpx;
+  right: -12rpx;
 }
 
 
-.btn {
+.btn{
   width: 100%;
   height: auto;
-  padding-top: 450rpx;
-  padding-bottom: 150rpx;
+  padding: 100rpx 0;
+  display: flex;
 }
-
-.registere {
-  width: 340rpx;
-  height: 80rpx;
-  background: rgba(78, 164, 251, 1);
-  border-radius: 80rpx;
+.submit{
+  width:340rpx;
+  height:80rpx;
+  background:rgba(77,163,251,1);
+  border-radius:40rpx;
+  font-size:38rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  color:rgba(255,255,255,1);
   text-align: center;
   line-height: 80rpx;
-  font-size: 38rpx;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 1);
-  margin: 0 auto;
+  margin-right: 20rpx;
 }
-.promptBox .confirm {
-  border-radius: 0 0 0 10rpx !important;
-  border-right: 1rpx solid #f4f4f4;
-
+.undo{
+  width:340rpx;
+  height:80rpx;
+  background:rgba(255,255,255,1);
+  border:2rpx solid rgba(60,153,248,1);
+  border-radius:40rpx;
+  font-size:38rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  color:rgba(77,163,251,1);
+  text-align: center;
+  line-height: 80rpx;
 }
-.promptBox .cancel {
-  border-radius: 0 0 10rpx 0 !important;
-}
-  

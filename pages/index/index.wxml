@@ -1,4 +1,71 @@
 <!--index.wxml-->
 <view class="container">
-  
+	<view class="bgimg">
+		<image src="./../images/banner.png" mode="widthFix"></image>
+	</view>
+	<view class="logo">
+		<view class="logintop">
+			<image src="./../icon/bglogo.png"></image>
+		</view>
+		<view class="logo_img">
+			<image src="./../images/logo1.png"></image>
+		</view>
+	</view>
+	<view class="title">浦东兴欣游泳馆</view>
+	<view class="body">
+		<view class="body_box" catchtap="router_myVenue">
+			<view class="bg_img">
+				<image src="./../icon/img0.png"></image>
+			</view>
+			<view class="img">
+				<image src="./../icon/img1.png"></image>
+			</view>
+			<view class="text">我的场馆</view>
+		</view>
+		<view class="body_box" catchtap="router_lifeguardInformation">
+			<view class="bg_img">
+				<image src="./../icon/img0.png"></image>
+			</view>
+			<view class="img">
+				<image src="./../icon/img2.png"></image>
+			</view>
+			<view class="text">救生员信息</view>
+		</view>
+		<view class="body_box" catchtap="router_waterAndQuality">
+			<view class="bg_img">
+				<image src="./../icon/img0.png"></image>
+			</view>
+			<view class="img">
+				<image src="./../icon/img3.png"></image>
+			</view>
+			<view class="text">上岗及水质信息</view>
+		</view>
+		<view class="body_box" catchtap="router_passengerFlow">
+			<view class="bg_img">
+				<image src="./../icon/img0.png"></image>
+			</view>
+			<view class="img">
+				<image src="./../icon/img4.png"></image>
+			</view>
+			<view class="text">场馆客流</view>
+		</view>
+		<view class="body_box" catchtap="router_importantNotice">
+			<view class="bg_img">
+				<image src="./../icon/img0.png"></image>
+			</view>
+			<view class="img">
+				<image src="./../icon/img5.png"></image>
+			</view>
+			<view class="text">重要通知</view>
+		</view>
+		<view class="body_box" catchtap="router_accidentReport">
+			<view class="bg_img">
+				<image src="./../icon/img0.png"></image>
+			</view>
+			<view class="img">
+				<image src="./../icon/img6.png"></image>
+			</view>
+			<view class="text">事故汇报</view>
+		</view>
+	</view>
 </view>

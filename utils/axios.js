@@ -112,6 +112,10 @@ const PostLifeguard = (data, datas) => {
 const GetDelLifeguard = data => {
   return get('api/Lifeguard/GetDelLifeguard', data);
 }
+//救生员详情
+const GetLifeguardDetail = data => {
+  return get('api/Lifeguard/GetLifeguardDetail', data);
+}
 
 
 
@@ -233,7 +237,9 @@ export {
   GetLifeguardList,
   PostLifeguard,
   GetDelLifeguard,
+  GetLifeguardDetail,
 
+  
 
   /**场馆客流 */
   GetPassenger,

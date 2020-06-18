@@ -29,7 +29,7 @@
 			<view class="title">提示</view>
 			<view class="txt">{{msg}}</view>
 			<view class="pb_btn">
-				<button class="cancel">取消</button>
+				<button class="cancel" catchtap="cancel">取消</button>
 				<button class="confirm" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{loginType==0}}">确定</button>
 				<button class="confirm" open-type="getUserInfo" bindgetuserinfo="getUserInfo" wx:if="{{loginType==1}}">确定</button>
 			</view>

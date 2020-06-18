@@ -1,0 +1,103 @@
+<!--pages/addLifeguard/index.wxml-->
+<view class="container">
+	<view class='nav'>
+		<navBar title='救生员信息' background='rgba(0,0,0,0)' color='#fff' back="{{true}}" home="{{false}}" iconTheme='white' bindback="handlerGobackClick"></navBar>
+	</view>
+	<view class="bgimg">
+		<image src="./../images/top1.png" mode="widthFix"></image>
+	</view>
+	<view class="main">
+		<view class="body">
+			<view class="title">添加救生员</view>
+			<view class="body_input">
+				<view class="txt">救生员姓名</view>
+				<view class="input"><input type="text" placeholder="填写救生员姓名" bindblur="inputWatch" data-model="name" value="{{name}}"></input></view>
+			</view>
+			<view class="body_input">
+				<view class="txt">岗位职务</view>
+				<view class="input" style="width: 508rpx;"><input type="text" placeholder="场馆负责人、救生组长、水职工、教员证" bindblur="inputWatch" data-model="position" value="{{position}}"></input></view>
+			</view>
+			<view class="body_input">
+				<view class="txt">救生员证件号</view>
+				<view class="input"><input type="text" placeholder="填写上岗证号" bindblur="inputWatch" data-model="number" value="{{number}}"></input></view>
+			</view>
+			<view class="body_input">
+				<view class="txt">联系方式</view>
+				<view class="input"><input type="text" placeholder="填写正确的联系手机号" bindblur="inputWatch" data-model="mobile" value="{{mobile}}"></input></view>
+			</view>
+			<view class="body_input">
+				<view class="txt">年龄</view>
+				<view class="input"><input type="text" placeholder="填写救生员年龄" bindblur="inputWatch" data-model="age" value="{{age}}"></input></view>
+			</view>
+			<view class="body_input">
+				<view class="txt">学历</view>
+				<view class="input"><input type="text" placeholder="填写救生员学历" bindblur="inputWatch" data-model="education" value="{{education}}"></input></view>
+			</view>
+      <view class="body_input">
+				<view class="txt" style="width: 426rpx;">性别</view>
+				<view class="radio_box">
+          <view class="radio">
+            <view class="radio_img" catchtap="radio" data-model="sex"><image src="{{sex?'./../icon/check2.png':'./../icon/check1.png'}}"></image></view>
+            <view class="radio_txt">男</view>
+          </view>
+          <view class="radio">
+            <view class="radio_img" catchtap="radio" data-model="sex"><image src="{{sex?'./../icon/check1.png':'./../icon/check2.png'}}"></image></view>
+            <view class="radio_txt">女</view>
+          </view>
+        </view>
+			</view>
+      <view class="body_input">
+				<view class="txt" style="width: 426rpx;">是否已年检</view>
+				<view class="radio_box">
+          <view class="radio">
+            <view class="radio_img" catchtap="radio" data-model="is_as"><image src="{{is_as?'./../icon/check2.png':'./../icon/check1.png'}}"></image></view>
+            <view class="radio_txt">是</view>
+          </view>
+          <view class="radio">
+            <view class="radio_img" catchtap="radio" data-model="is_as"><image src="{{is_as?'./../icon/check1.png':'./../icon/check2.png'}}"></image></view>
+            <view class="radio_txt">否</view>
+          </view>
+        </view>
+			</view>
+		</view>
+		<view class="bodyImg">
+			<view class="title">
+				<view>救生员上岗证照片<text>（有二维码上岗证照片 ）</text></view>
+				<view class="num">{{LifeguardImg.length}}/4</view>
+			</view>
+			<view class="examples_box">
+				<view class="eb_title" data-index="0" catchtap="examples">
+					<view>示例</view>
+					<view class="show">
+						<image src="{{examplesList.flag?'./../icon/up.png':'./../icon/down.png'}}"></image>
+					</view>
+				</view>
+				<view class="eb_imgs" wx:if="{{examplesList.flag}}">
+					<block wx:for="{{examplesList.imglist}}" wx:key="index">
+						<view class="eb_img">
+							<image src="{{item}}" />
+						</view>
+					</block>
+				</view>
+			</view>
+			<view class="ImgList" wx:if="{{!examplesList.flag}}">
+				<view class="imgs">
+					<block wx:for="{{LifeguardImg}}" wx:key="index">
+						<view class="item" wx:if="{{index<4}}">
+              <view class="img" catchtap="previewImage" data-model="LifeguardImg" data-src="{{item}}"><image src="{{item}}" mode="aspectFill" /></view>
+              <view class="del" catchtap="delete" data-model="LifeguardImg" data-index="{{index}}"><image src="./../icon/del.png"></image></view>
+						</view>
+					</block>
+				</view>
+				<view class="addimg" data-model="LifeguardImg" catchtap="fileUpload" wx:if="{{LifeguardImg.length<4}}">
+					<image src="./../icon/addimg.png"></image>
+				</view>
+			</view>
+		</view>
+		<view class="btn">
+			<view class="submit" catchtap="submit">提交</view>
+      <view class="undo" catchtap="undo">撤销</view>
+		</view>
+	</view>
+
+</view>

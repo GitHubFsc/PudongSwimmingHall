@@ -1,0 +1,164 @@
+<!--pages/myVenue/index.wxml-->
+<!--pages/registeredVenue/index.wxml-->
+<view class="container">
+	<view class='nav'>
+		<navBar title='我的场馆' background='rgba(0,0,0,0)' color='#fff' back="{{true}}" home="{{false}}" iconTheme='white' bindback="handlerGobackClick"></navBar>
+	</view>
+	<view class="bgimg">
+		<image src="./../images/top1.png" mode="widthFix"></image>
+	</view>
+	<view class="main">
+		<view class="body">
+			<view class="title">场馆信息</view>
+			<view class="body_input">
+				<view class="txt">场馆名称</view>
+				<view class="input"><text>{{venues_name}}</text></view>
+			</view>
+			<view class="body_input">
+				<view class="txt">场馆别称</view>
+				<view class="input"><text>{{venues_another_name}}</text></view>
+			</view>
+			<view class="body_input">
+				<view class="txt">经营地址</view>
+				<view class="input"><text>{{address}}</text></view>
+			</view>
+			<view class="body_input">
+				<view class="txt">场馆电话</view>
+				<view class="input"><text>{{tel}}</text></view>
+			</view>
+			<view class="body_input">
+				<view class="txt">场馆负责人姓名</view>
+				<view class="input"><text>{{head_name}}</text></view>
+			</view>
+			<view class="body_input">
+				<view class="txt" style="width: 426rpx;">场馆负责人手机（会拨打）</view>
+				<view class="input"><text>{{head_mobile}}</text></view>
+			</view>
+		</view>
+		<view class="bodyImg">
+			<view class="title">
+				<view>营业执照照片</view>
+				<view class="num">{{business_license.length}}/4</view>
+			</view>
+			<view class="ImgList" wx:if="{{!examplesList[0].flag}}">
+				<view class="imgs">
+					<block wx:for="{{business_license}}" wx:key="index">
+						<view class="img" catchtap="previewImage" data-model="business_license" data-src="{{item}}">
+							<image src="{{item}}" mode="aspectFill" />
+						</view>
+					</block>
+				</view>
+			</view>
+		</view>
+		<view class="bodyImg">
+			<view class="title">
+				<view>高危许可证照片</view>
+				<view class="num">{{high_risk_permit.length}}/4</view>
+			</view>
+			<view class="ImgList" wx:if="{{!examplesList[1].flag}}">
+				<view class="imgs">
+					<block wx:for="{{high_risk_permit}}" wx:key="index">
+						<view class="img" catchtap="previewImage" data-model="high_risk_permit" data-src="{{item}}">
+							<image src="{{item}}" mode="aspectFill" />
+						</view>
+					</block>
+				</view>
+			</view>
+			<view class="picker_box">高危许可证有效期 <text>{{highlevelpermit_time}}</text></view>
+		</view>
+		<view class="bodyImg">
+			<view class="title">
+				<view>卫生许可证照片<text>（许可证、公示栏、救生设备）</text></view>
+				<view class="num">{{sanitary_permit.length}}/4</view>
+			</view>
+			<view class="ImgList" wx:if="{{!examplesList[2].flag}}">
+				<view class="imgs">
+					<block wx:for="{{sanitary_permit}}" wx:key="index">
+						<view class="img" catchtap="previewImage" data-model="sanitary_permit" data-src="{{item}}">
+							<image src="{{item}}" mode="aspectFill" />
+						</view>
+					</block>
+				</view>
+			</view>
+		</view>
+		<view class="bodyImg">
+			<view class="title">
+				<view>场馆门头照片 <text>（场馆门头、前台放置健身海报）</text></view>
+				<view class="num">{{venue_head.length}}/4</view>
+			</view>
+			<view class="ImgList" wx:if="{{!examplesList[3].flag}}">
+				<view class="imgs">
+					<block wx:for="{{venue_head}}" wx:key="index">
+						<view class="img" catchtap="previewImage" data-model="venue_head" data-src="{{item}}">
+							<image src="{{item}}" mode="aspectFill" />
+						</view>
+					</block>
+				</view>
+			</view>
+		</view>
+		<view class="bodyImg">
+			<view class="title">
+				<view>泳池照片<text>（多角度照、浸脚池照、水深标识照）</text></view>
+				<view class="num">{{swimming_pool.length}}/4</view>
+			</view>
+			<view class="ImgList" wx:if="{{!examplesList[4].flag}}">
+				<view class="imgs">
+					<block wx:for="{{swimming_pool}}" wx:key="index">
+						<view class="img" catchtap="previewImage" data-model="swimming_pool" data-src="{{item}}">
+							<image src="{{item}}" mode="aspectFill" />
+						</view>
+					</block>
+				</view>
+			</view>
+		</view>
+		<view class="bodyImg">
+			<view class="title">
+				<view>证照公式照片<text>（三证、上岗证、水质公示栏及游客须知）</text></view>
+				<view class="num">{{certificate_formula.length}}/4</view>
+			</view>
+			<view class="ImgList" wx:if="{{!examplesList[5].flag}}">
+				<view class="imgs">
+					<block wx:for="{{certificate_formula}}" wx:key="index">
+						<view class="img" catchtap="previewImage" data-model="certificate_formula" data-src="{{item}}">
+							<image src="{{item}}" mode="aspectFill" />
+						</view>
+					</block>
+				</view>
+			</view>
+		</view>
+		<view class="bodyImg">
+			<view class="title">
+				<view>救生器材照片<text>（带颈托救生担架、氧气瓶、救生杆、救生圈）</text></view>
+				<view class="num">{{buoyant_apparatus.length}}/4</view>
+			</view>
+			<view class="ImgList" wx:if="{{!examplesList[6].flag}}">
+				<view class="imgs">
+					<block wx:for="{{buoyant_apparatus}}" wx:key="index">
+						<view class="img" catchtap="previewImage" data-model="buoyant_apparatus" data-src="{{item}}">
+							<image src="{{item}}" mode="aspectFill" />
+						</view>
+					</block>
+				</view>
+			</view>
+		</view>
+		<view class="bodyImg">
+			<view class="title">
+				<view>监控设备照片<text>（所有监控角度、监控回放日历照片）</text></view>
+				<view class="num">{{monitoring_aids.length}}/4</view>
+			</view>
+			<view class="ImgList" wx:if="{{!examplesList[7].flag}}">
+				<view class="imgs">
+					<block wx:for="{{monitoring_aids}}" wx:key="index">
+						<view class="img" catchtap="previewImage" data-model="monitoring_aids" data-src="{{item}}">
+							<image src="{{item}}" mode="aspectFill" />
+						</view>
+					</block>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="service_box">
+		<text>内容不可修改，有问题请联系客服</text>
+		<button open-type="contact" size="mini" class="service"><image src="./../icon/service.png"></image></button>
+	</view>
+</view>

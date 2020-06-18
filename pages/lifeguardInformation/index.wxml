@@ -1,2 +1,41 @@
 <!--pages/lifeguard/index.wxml-->
-<text>pages/lifeguard/index.wxml</text>
+<view class="container">
+	<view class='nav'>
+		<navBar title='救生员信息' background='rgba(0,0,0,0)' color='#fff' back="{{false}}" home="{{false}}" iconTheme='white' bindback="handlerGobackClick"></navBar>
+	</view>
+	<view class="bgimg">
+		<image src="./../images/top1.png" mode="widthFix"></image>
+	</view>
+	<view class="main">
+		<view class="body">
+			<view class="title">救生员列表</view>
+			<view class="lifeguards" wx:if="{{listFlag}}">
+				<block wx:for="{{LifeguardList}}" wx:key="index">
+					<view class="lifeguard">
+						<view class="user_img">
+							<image src="{{item.img_url}}"></image>
+						</view>
+						<view class="user">
+							<view class="user_name">{{item.name}}({{item.position}})</view>
+							<view class="userId">{{item.number}}</view>
+						</view>
+						<view class="lifeguard_btn" wx:if="{{item.flag}}">
+							<view class="btn" data-id="{{item.id}}" catchtap="edit">编辑</view>
+							<view class="btn" data-id="{{item.id}}" catchtap="delete">删除</view>
+						</view>
+					</view>
+				</block>
+			</view>
+			<view class="empty_box" wx:if="{{!listFlag}}">
+				<view class="empty">
+					<image src="./../icon/img10.png"></image>
+				</view>
+				<view>暂无记录</view>
+			</view>
+		</view>
+		<view class="prompt">提示:必须添加泳池负责人、水质工及3名以上救生员信息</view>
+		<view class="btns">
+			<view class="btn" catchtap="router_addLifeguard">添加</view>
+		</view>
+	</view>
+</view>

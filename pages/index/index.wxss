@@ -1,21 +1,84 @@
 /**index.wxss**/
-.userinfo {
+.container{
+  width: 100%;
+  height: 100%;
+  background-color: #FBFBFB;
+  position: relative;
+}
+.bgimg{
+  width: 100%;
+  height: auto;
+  position: absolute;
+}
+.bgcolor{
+  width: 100%;
+  height: auto;
+  position: absolute;
+}
+.logo{
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 95rpx;
+  left: 250rpx;
+  z-index: 1;
+}
+.logo .logintop{
+  width: 250rpx;
+  height: 250rpx;
+}
+.logo .logo_img{
+  width: 170rpx;
+  height: 170rpx;
+  position: absolute;
+  top: 40rpx;
+  left: 40rpx;
+  z-index: 2;
+}
+.title{
+  width: 100%;
+  text-align: center;
+  font-size:38rpx;
+  font-weight:bold;
+  color:rgba(255,255,255,1);
+  position: absolute;
+  top: 320rpx;
+  z-index: 2;
+}
+.body{
+  width:700rpx;
+  height:748rpx;
+  background:rgba(255,255,255,1);
+  border-radius:20rpx;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  position: absolute;
+  top: 410rpx;
+  left: 25rpx;
 }
-
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.body .body_box{
+  width: 120rpx;
+  height: 250rpx;
+  margin: 60rpx 60rpx 0 50rpx;
+  position: relative;
+} 
+.body .body_box .bg_img{
+  width: 120rpx;
+  height: 120rpx;
 }
-
-.userinfo-nickname {
-  color: #aaa;
+.body .body_box .img{
+  width: 55rpx;
+  height: 55rpx;
+  position: absolute;
+  top: 33rpx;
+  left: 33rpx;
 }
-
-.usermotto {
-  margin-top: 200px;
+.body .body_box .text{
+  margin-top: 18rpx;
+  text-align: center;
+  font-size:30rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  color:rgba(51,51,51,1);
 }

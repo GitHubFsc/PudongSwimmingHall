@@ -18,12 +18,14 @@ Page({
     let { user_name, password } = that.data;
     if (user_name && password) {
       that.getLogin(res => {
+        wx.setStorageSync('status', status);
+        wx.setStorageSync('venues_id', venues_id);
         if (res.status == 0) {
-          wx.redirectTo({
+          wx.reLaunch({
             url: '../registeredVenue/index?id=' + res.id + '&status=' + res.status
           })
         } else if (res.status == 1) {
-          wx.redirectTo({
+          wx.reLaunch({
             url: '../registeredVenue/index?id=' + res.id + '&status=' + res.status
           })
         } else if (res.status == 2) {
@@ -31,7 +33,7 @@ Page({
             url: '../index/index'
           })
         } else {
-          wx.redirectTo({
+          wx.reLaunch({
             url: '../registeredVenue/index??id=' + res.id + '&status=' + res.status + '&reason=' + res.reason
           })
         }

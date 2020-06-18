@@ -105,6 +105,7 @@ App({
   },
   globalData: {
     venue_id : null,
+    status : null,
     openid :  null,
     mobile : null,
     user_id : null,
